@@ -13,8 +13,12 @@ export const Header: React.FC = () => {
 
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
-    <header >
-      <Navbar expand="md" />
+    <header id="header">
+      <Navbar expand="md">
+        <Navbar.Brand>
+          <div>Daily</div>
+        </Navbar.Brand>
+      </Navbar>
     </header>
   )
 }
