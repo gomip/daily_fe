@@ -26,7 +26,8 @@
     "object-curly-spacing": ["error", "never"],                                                                         // {} 안에 스페이스 허용 안함
     "import/no-unresolved": "off",
     "import/extensions": ["error", "never"],
-    "react/jsx-filename-extension": [1, {"extensions": [".tsx"]}],
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": [1, {"extensions": [".tsx",".ts"]}],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "jsx-a11y/anchor-is-valid": [
