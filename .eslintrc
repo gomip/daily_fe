@@ -22,7 +22,6 @@
   "rules": {                                                                                                            // 프로젝트에서 사용하는 규칙을 수정
     "no-use-before-define": "off",                                                                                      // 정의 되기전에 사용하도록 허용
     "semi": ["error", "never"],                                                                                         // 세미콜론 사용방지
-    "arrow-parens": ["error", "as-needed"],                                                                             // arg들 괄호가 필요없을경우 삭제가능
     "object-curly-spacing": ["error", "never"],                                                                         // {} 안에 스페이스 허용 안함
     "import/no-unresolved": "off",
     "import/extensions": ["error", "never"],

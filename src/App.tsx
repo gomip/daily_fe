@@ -1,6 +1,7 @@
 import React from "react"
 import {Helmet} from "react-helmet"
 import "./App.css"
+import "./static/style/main.scss"
 import {AppRouter} from "./AppRouter"
 
 function App() {

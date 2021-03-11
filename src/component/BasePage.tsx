@@ -1,22 +1,22 @@
 import * as React from "react"
-import {BasePage} from "../../component/BasePage"
-
+import "../static/style/main.scss"
 /**
- * 2021.03.10 | gomip | created
+ * 2021.03.11 | gomip | created
  * @constructor
  */
-
-export const MainPage: React.FC = () => {
+interface Props {
+  removeHeaderInfo?: boolean
+  className?: string
+}
+export const BasePage: React.FC<Props> = (props) => {
   // State -------------------------------------------------------------------------------------------------------------
-
+  const {children} = props
   // Function ----------------------------------------------------------------------------------------------------------
 
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
-    <BasePage>
-      <div className="title-container">
-        <p>Title</p>
-      </div>
-    </BasePage>
+    <section className="page-container">
+      {children}
+    </section>
   )
 }
