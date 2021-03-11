@@ -12,6 +12,7 @@
     "@types/react-dom": "^17.0.1",
     "@types/react-helmet": "^6.1.0",
     "bootstrap": "^4.6.0",
+    "codegen": "^0.1.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
@@ -22,6 +23,7 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
+    "codegen:local": "openapi-generator-cli generate -i http://localhost:5001/v3/api-docs -o src/API -g typescript-axios -c ./axios.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
