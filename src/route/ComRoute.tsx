@@ -6,7 +6,7 @@ import {MainPage} from "../page/main/MainPage"
  * @constructor
  */
 
-export const COMRoute: React.FC = () => {
+export const ComRoute: React.FC = () => {
   // State -------------------------------------------------------------------------------------------------------------
   const {path} = useRouteMatch()
   // Function ----------------------------------------------------------------------------------------------------------
@@ -21,4 +21,4 @@ export const COMRoute: React.FC = () => {
   )
 }
 
-export default COMRoute
+export default ComRoute

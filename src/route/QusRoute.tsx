@@ -1,23 +1,17 @@
 import * as React from "react"
-import {Button} from "react-bootstrap"
-import {BasePage} from "../../component/BasePage"
 
 /**
- * 2021.03.10 | gomip | created
+ * 2021.03.11 | gomip | created
  * @constructor
  */
 
-export const MainPage: React.FC = () => {
+export const QusRoute: React.FC = () => {
   // State -------------------------------------------------------------------------------------------------------------
 
   // Function ----------------------------------------------------------------------------------------------------------
 
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
-    <BasePage>
-      <div className="title-container">
-        <Button>Sign up</Button>
-      </div>
-    </BasePage>
+    <div>hihihi</div>
   )
 }
