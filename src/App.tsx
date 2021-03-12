@@ -1,15 +1,12 @@
 import React from "react"
-import {Helmet} from "react-helmet"
-import "./App.css"
+import "./App.scss"
 import "./static/style/main.scss"
+import 'bootstrap/dist/css/bootstrap.min.css'
 import {AppRouter} from "./AppRouter"
 
 function App() {
   return (
     <div id="app-body">
-      <Helmet>
-        <title>Daily Programming</title>
-      </Helmet>
       <AppRouter />
     </div>
   )

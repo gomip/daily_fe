@@ -17,27 +17,27 @@ export const Header: React.FC = () => {
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
     <header id="header">
-      <Navbar expand="md" className="header-container">
-        <Navbar.Brand className="logo">Daily</Navbar.Brand>
+      <div className="header-container">
+        <div className="logo">Daily</div>
         {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
         {
           isLoggedIn ?
-            <Nav className="header-menu">
-              <Nav.Link href="#" className="header-loggedin">로그인됨</Nav.Link>
-              <Nav.Link href="#" className="header-loggedin">로그인됨</Nav.Link>
-              <Nav.Link href="#" className="header-loggedin">로그인됨</Nav.Link>
-              <Nav.Link href="#" className="header-loggedin">로그인됨</Nav.Link>
-            </Nav>
+            <div className="header-menu">
+              <a href="/qus/question" className="header-loggedin">Question</a>
+              <a href="/#" className="header-loggedin">Dashboard</a>
+              <a href="/#" className="header-loggedin">Job</a>
+              <a href="/#" className="header-loggedin">My Page</a>
+            </div>
             :
-            <Nav className="header-menu">
-              <Nav.Link
-                href="#"
+            <div className="header-menu">
+              <a
+                href="/#"
               >
                 로그인
-              </Nav.Link>
-            </Nav>
+              </a>
+            </div>
         }
-      </Navbar>
+      </div>
     </header>
   )
 }

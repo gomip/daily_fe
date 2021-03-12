@@ -23,14 +23,23 @@
   font-size: 30px;
   font-weight: bold;
   color: white;
+
+  display: inline-block;
 }
 
 .header-menu{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
   & a {
     font-weight: bold;
     font-size: 20px;
     color: white;
     text-decoration: none;
+    &:hover{
+      color: white;
+      text-decoration: none;
+    }
   }
   & .header-loggedin{
     margin-left: 20px;
@@ -43,13 +52,22 @@
 .page-container{
   width: 1280px;
   margin: 0 auto;
-  padding: 20px;
+  padding-top: 50px;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 // 회원가입 버튼
-btn-signup{
-  color: #497CE3;
-}
+//.btn{
+  //background-color: #497CE3;
+  //border-width: 0;
+  //border-radius: 15px;
+  //height: 44px;
+  //width: 160px;
+  //color: white;
+  //font-size: 18px;
+//}
 /* ---------------------------------------------------------------------------------------------------------------------
  * 메인 화면
 --------------------------------------------------------------------------------------------------------------------- */
