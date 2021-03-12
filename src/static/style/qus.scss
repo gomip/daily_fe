@@ -9,11 +9,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-h3{
-  color: white;
-  margin: 0
+  h3{
+    color: white;
+    margin: 0
+  }
 }
 
 .btn-register{
@@ -29,10 +29,48 @@ h3{
   padding-top: 55px;
 }
 
+/* ---------------------------------------------------------------------------------------------------------------------
+ * 문제 카드
+--------------------------------------------------------------------------------------------------------------------- */
 .card-qus{
   margin-top: 20px;
   width: 100%;
   height: 120px;
   background-color: #76787d;
   border-radius: 15px;
+
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-area{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  h4{
+    color: white;
+    font-size: 28px;
+  }
+  span{
+    color: #BFC0C2;
+  }
+}
+
+.right-arrow{
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
+/* ---------------------------------------------------------------------------------------------------------------------
+ * 태그 카드
+--------------------------------------------------------------------------------------------------------------------- */
+.card-tag{
+  .tag-label{
+    color: #76787d;
+    font-size: 18px;
+  }
 }

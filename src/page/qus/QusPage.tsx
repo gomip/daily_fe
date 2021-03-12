@@ -3,6 +3,7 @@ import {BasePage} from "../../component/BasePage"
 import "../../static/style/qus.scss"
 import {Button} from "react-bootstrap"
 import {QusCard} from "./QusCard"
+import {TagCard} from "./TagCard"
 
 /**
  * 2021.03.12 | gomip | created
@@ -33,7 +34,7 @@ export const QusPage: React.FC = () => {
         {/* 헤더 영역 끝 */}
 
         {/* 문제 목록 시작 */}
-        <div className="card-qus">
+        <div>
           <QusCard />
           <QusCard />
           <QusCard />
@@ -49,7 +50,17 @@ export const QusPage: React.FC = () => {
 
     {/* ============================= 태그 영역 시작 =========================== */}
       <div className="container-tag">
-        <div style={{backgroundColor: "#bbb"}}>tag</div>
+        {/* 태그 시작 */}
+        <div>
+          <TagCard title="Tag"/>
+        </div>
+        {/* 태그 끝 */}
+
+        {/* 언어 시작 */}
+        <div>
+          <TagCard title="Language"/>
+        </div>
+        {/* 언어 끝 */}
       </div>
     {/* ============================= 태그 영역 끝 ============================ */}
     </BasePage>
