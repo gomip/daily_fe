@@ -25,6 +25,16 @@
   color: white;
 
   display: inline-block;
+
+  & a {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    &:hover{
+      color: white;
+      text-decoration: none;
+    }
+  }
 }
 
 .header-menu{

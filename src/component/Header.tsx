@@ -18,7 +18,9 @@ export const Header: React.FC = () => {
   return (
     <header id="header">
       <div className="header-container">
-        <div className="logo">Daily</div>
+        <div className="logo">
+          <a href="/#">Daily</a>
+        </div>
         {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
         {
           isLoggedIn ?

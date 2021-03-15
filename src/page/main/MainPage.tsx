@@ -25,7 +25,7 @@ export const MainPage: React.FC = () => {
         >
           Sign up
         </Button>
-        <a href="http://localhost:5001/auth/GOOGLE">구글 로그인</a>
+        <a href="http://localhost:5001/oauth2/authorize/google?redirect_uri=<uri>">구글 로그인</a>
       </div>
     </BasePage>
   )
