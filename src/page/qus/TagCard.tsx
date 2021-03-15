@@ -24,7 +24,12 @@ export const TagCard: React.FC<TagCardProps> = (props) => {
         {
           item &&
             item.map(it => (
-              <div key={it.comCdId}>{it.comCdName}</div>
+              <div key={it.comCdId} className="checkbox-container">
+                <input
+                  type="checkbox"
+                />
+                <div style={{color: "#c0c0c3", marginLeft: "10px"}}>{it.comCdName}</div>
+              </div>
             ))
         }
       </div>
