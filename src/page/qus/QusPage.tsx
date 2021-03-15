@@ -13,6 +13,7 @@ import {GetQusOut, PagingGetQusOut} from "../../API"
 /**
  * 2021.03.12 | gomip | created
  * @constructor
+ * 2021.03.15 | gomip | infinite scroll 및 api 적용
  */
 
 const {useState, useEffect} = React
@@ -28,30 +29,7 @@ export const QusPage: React.FC = () => {
   }, [pageNum])
 
   // Function ----------------------------------------------------------------------------------------------------------
-  // const handleScroll = () => {
-  //   console.log("im here")
-  //   const scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)
-  //   const scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop)
-  //   const {clientHeight} = document.documentElement
-  //
-  //   if (scrollTop + clientHeight === scrollHeight) {
-  //     console.log("im here")
-  //     const tmp = pageNum + 1
-  //     setPageNum(tmp)
-  //   }
-  // }
   // API ---------------------------------------------------------------------------------------------------------------
-  // const getQus = async () => {
-  //   try {
-  //     const qusData = await axios.get(`${API_HOST}/qus`)
-  //       .then(res => {
-  //         console.log('res', res.data)
-  //         setQus(res.data)
-  //       })
-  //   } catch (err) {
-  //     console.error(err)
-  //   }
-  // }
   const getQus = async () => {
     const qusData = await service.getQusPaging("", pageNum)
       .then(res => {

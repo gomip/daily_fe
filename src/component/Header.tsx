@@ -5,6 +5,7 @@ import "../static/style/main.scss"
 /**
  * 2021.03.10 | gomip | created
  * @constructor
+ * 2021.03.15 | gomip | Daily 텍스트 클릭시 홈으로 이동
  */
 
 const {useState, useEffect} = React

@@ -5,6 +5,7 @@ import {GetQusOut} from "../../API"
 /**
  * 2021.03.12 | gomip | created
  * @constructor
+ * 2021.03.15 | gomip | props로 값 전달받아서 카드 출력하는걸로 변경
  */
 
 export interface QusCardProps{
