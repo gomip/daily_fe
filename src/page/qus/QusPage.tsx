@@ -19,7 +19,7 @@ import cdService from "../com/cdService"
 
 const {useState, useEffect} = React
 
-interface GetQusIn{
+interface GetQusIn {
   difCd?: string[],
   orderBy?: string,
   pageNum?: number,
@@ -46,13 +46,13 @@ export const QusPage: React.FC = () => {
 
   useEffect(() => {
     getCd()
-  },[])
+  }, [])
 
   // Function ----------------------------------------------------------------------------------------------------------
   const handleCheckbox = (e: React.SyntheticEvent<HTMLInputElement>) => {
     const {value} = e.currentTarget
     const strSplice = value.split("-")
-    if (strSplice[0] === 'TAG_CD') {                                            // 선택한 태그의 앞에가 TAG_CD인 경우 tag_cd state에 해당값을 넣어준다.
+    if (strSplice[0] === "TAG_CD") {                                            // 선택한 태그의 앞에가 TAG_CD인 경우 tag_cd state에 해당값을 넣어준다.
       let tmpTag: string[] = []
       if (tagCd.some(item => item === strSplice[1])) {                          // 선택한 태그값이 있으면 tagCd state에서 제거해준다
         tmpTag = tagCd.filter(item => item !== strSplice[1])
@@ -60,7 +60,7 @@ export const QusPage: React.FC = () => {
         tmpTag = tagCd.concat(strSplice[1])                                     // 선택한 태그값이 없으면 tacCd state에 추가해준다.
       }
       setTagCd(tmpTag)
-    } else if (strSplice[0] === 'DIF_CD') {                                     // 선택한 태그의 앞에가 DIF_CD인 경우 dif_cd state에 해당값을 넣어준다.
+    } else if (strSplice[0] === "DIF_CD") {                                     // 선택한 태그의 앞에가 DIF_CD인 경우 dif_cd state에 해당값을 넣어준다.
       let tmpDif: string[] = []
       if (difCd.some(item => item === strSplice[1])) {
         tmpDif = difCd.filter(item => item !== strSplice[1])                    // 선택한 난이도 값이 있으면 difCd state에 제거해준다.
@@ -99,8 +99,8 @@ export const QusPage: React.FC = () => {
     await cdService.getCdList()
       .then(res => {
         setCd(res.data)
-        const tmpTagCd = res.data.filter(item => item.comGrpCd === 'TAG_CD')
-        const tmpDifCd = res.data.filter(item => item.comGrpCd === 'DIF_CD')
+        const tmpTagCd = res.data.filter(item => item.comGrpCd === "TAG_CD")
+        const tmpDifCd = res.data.filter(item => item.comGrpCd === "DIF_CD")
         setTagCdList(tmpTagCd)
         setDifCdList(tmpDifCd)
       })
@@ -108,15 +108,15 @@ export const QusPage: React.FC = () => {
 
   const renderLoading = () => {
     return (
-      <div style={{marginTop: '20px'}}>
-        <h4 style={{color: 'white'}}>Loading...</h4>
+      <div style={{marginTop: "20px"}}>
+        <h4 style={{color: "white"}}>Loading...</h4>
       </div>
     )
   }
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
     <BasePage>
-    {/* ============================= 문제 영역 시작 =========================== */}
+      {/* ============================= 문제 영역 시작 ========================= */}
       <div className="container-qus">
         {/* 헤더 영역 시작 */}
         <div className="sub-header">
@@ -135,27 +135,27 @@ export const QusPage: React.FC = () => {
 
         <div id="scrollableDiv">
           <InfiniteScroll
-            next={() => setPageNum(pageNum+1)}
+            next={() => setPageNum(pageNum + 1)}
             hasMore
             loader={renderLoading()}
             dataLength={qus ? qus.total : 0}
           >
             {
               qusList &&
-                qusList.map((item, idx) => (
-                  <QusCard key={item.qusId} qus={item} />
-                ))
-              // qusList.map((it, idx) => (
-              //   <QusCard key={it.qusId} qus={it}/>
-              // ))
+              qusList.map((item, idx) => (
+                <QusCard
+                  key={item.qusId}
+                  qus={item}
+                />
+              ))
             }
           </InfiniteScroll>
         </div>
         {/* 문제 목록 끝 */}
       </div>
-    {/* ============================= 문제 영역 끝 ============================ */}
+      {/* ============================= 문제 영역 끝 ============================ */}
 
-    {/* ============================= 태그 영역 시작 =========================== */}
+      {/* ============================= 태그 영역 시작 =========================== */}
       <div className="container-tag">
         {/* 태그 시작 */}
 
@@ -166,7 +166,7 @@ export const QusPage: React.FC = () => {
         />
         {/* 태그 끝 */}
 
-        <div style={{marginTop: '20px'}}/>
+        <div style={{marginTop: "20px"}} />
         {/* 언어 시작 */}
         <TagCard
           title="Difficulty"
@@ -175,7 +175,7 @@ export const QusPage: React.FC = () => {
         />
         {/* 언어 끝 */}
       </div>
-    {/* ============================= 태그 영역 끝 ============================ */}
+      {/* ============================= 태그 영역 끝 ============================ */}
     </BasePage>
   )
 }

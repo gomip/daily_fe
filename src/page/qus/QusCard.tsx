@@ -1,6 +1,7 @@
 import * as React from "react"
 import {FaChevronRight} from "react-icons/fa"
 import "../../static/style/qus.scss"
+import {Link, useHistory} from "react-router-dom"
 import {GetQusOut} from "../../API"
 /**
  * 2021.03.12 | gomip | created
@@ -17,12 +18,25 @@ const {useState, useEffect} = React
 export const QusCard: React.FC<QusCardProps> = (props) => {
   // State -------------------------------------------------------------------------------------------------------------
   const {qus} = props
+  const history = useHistory()
   // LifeCycle ---------------------------------------------------------------------------------------------------------
   // Function ----------------------------------------------------------------------------------------------------------
 
+  const handleQusDetail = (e: React.MouseEvent<HTMLDivElement>) => {
+    history.push({
+      pathname: `/qus/question/${qus.qusId}`,
+      state: {qus}
+    })
+  }
+
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
-    <div className="card-qus">
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+    <div
+      id={qus.qusId}
+      className="card-qus"
+      onClick={handleQusDetail}
+    >
       <div className="title-area">
         <h4>{qus.qusTitle}</h4>
         <div>
