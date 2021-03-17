@@ -9,11 +9,12 @@ import {GetCdOut} from "../../API"
 export interface TagCardProps{
   title: string
   item: GetCdOut[]
+  handleCheckbox: (e: React.SyntheticEvent<HTMLInputElement>) => void
 }
 
 export const TagCard: React.FC<TagCardProps> = (props) => {
   // State -------------------------------------------------------------------------------------------------------------
-  const {title, item} = props
+  const {title, item, handleCheckbox} = props
   // Function ----------------------------------------------------------------------------------------------------------
 
   // Dom ---------------------------------------------------------------------------------------------------------------
@@ -26,7 +27,9 @@ export const TagCard: React.FC<TagCardProps> = (props) => {
             item.map(it => (
               <div key={it.comCdId} className="checkbox-container">
                 <input
+                  value={`${it.comGrpCd}-${it.comCd}`}
                   type="checkbox"
+                  onClick={handleCheckbox}
                 />
                 <div style={{color: "#c0c0c3", marginLeft: "10px"}}>{it.comCdName}</div>
               </div>

@@ -19,31 +19,89 @@ import cdService from "../com/cdService"
 
 const {useState, useEffect} = React
 
+interface GetQusIn{
+  difCd?: string[],
+  orderBy?: string,
+  pageNum?: number,
+  pageSize?: number,
+  tagCd?: string[],
+  options?: any
+}
+
 export const QusPage: React.FC = () => {
   // State -------------------------------------------------------------------------------------------------------------
   const [pageNum, setPageNum] = useState(1)
   const [qus, setQus] = useState<PagingGetQusOut>()                             // 문제 전체 정보 (pagination 포함)
-  const [qusList, setQusList] = useState<GetQusOut[]>([])             // qus card용 문제 정보
+  const [qusList, setQusList] = useState<GetQusOut[]>([])             // 문제 목록
   const [cd, setCd] = useState<GetCdOut[]>([])                        // 코드 목록 조회
-  const [tagCd, setTagCd] = useState<GetCdOut[]>([])                  // 태그 코드 목록
-  const [difCd, setDifCd] = useState<GetCdOut[]>([])                  // 난이도 코드 목록
+  const [tagCdList, setTagCdList] = useState<GetCdOut[]>([])          // 태그 코드 목록
+  const [difCdList, setDifCdList] = useState<GetCdOut[]>([])          // 난이도 코드 목록
+  const [tagCd, setTagCd] = useState<string[]>([])
+  const [difCd, setDifCd] = useState<string[]>([])
+  const [isCdChanged, setIsCdChanged] = useState(false)               // 코드값 변경 확인 state
   // LifeCycle ---------------------------------------------------------------------------------------------------------
   useEffect(() => {
     getQus()
-  }, [pageNum])
+  }, [pageNum, tagCd, difCd])
 
   useEffect(() => {
     getCd()
   },[])
 
   // Function ----------------------------------------------------------------------------------------------------------
+  const handleCheckbox = (e: React.SyntheticEvent<HTMLInputElement>) => {
+    const {value} = e.currentTarget
+    const strSplice = value.split("-")
+    if (strSplice[0] === 'TAG_CD') {                                            // 선택한 태그의 앞에가 TAG_CD인 경우 tag_cd state에 해당값을 넣어준다.
+      let tmpTag: string[] = []
+      if (tagCd.some(item => item === strSplice[1])) {                          // 선택한 태그값이 있으면 tagCd state에서 제거해준다
+        tmpTag = tagCd.filter(item => item !== strSplice[1])
+      } else {
+        tmpTag = tagCd.concat(strSplice[1])                                     // 선택한 태그값이 없으면 tacCd state에 추가해준다.
+      }
+      setTagCd(tmpTag)
+    } else if (strSplice[0] === 'DIF_CD') {                                     // 선택한 태그의 앞에가 DIF_CD인 경우 dif_cd state에 해당값을 넣어준다.
+      let tmpDif: string[] = []
+      if (difCd.some(item => item === strSplice[1])) {
+        tmpDif = difCd.filter(item => item !== strSplice[1])                    // 선택한 난이도 값이 있으면 difCd state에 제거해준다.
+      } else {
+        tmpDif = difCd.concat(strSplice[1])                                     // 선택한 난이도 값이 없으면 difCd state에 추가해준다.
+      }
+      setDifCd(tmpDif)
+    }
+    setIsCdChanged(true)
+  }
   // API ---------------------------------------------------------------------------------------------------------------
   const getQus = async () => {                                                  // 문제 목록 조회
-    await service.getQusPaging("", pageNum)
+    await service.getQusPaging(
+      difCd.length > 0 ? difCd.toString() : undefined,
+      "",
+      pageNum,
+      15,
+      tagCd.length > 0 ? tagCd.toString() : undefined
+    )
       .then(res => {
         setQus(res.data)
-        const tmp = qusList.concat(res.data.list)
-        setQusList(tmp)
+        if (isCdChanged) {                                                      // 옆에 필터값들이 변한거면 qus를 초기화해준다.
+          setQusList(res.data.list)
+          setPageNum(1)
+        } else {
+          const tmp = qusList.concat(res.data.list)
+          setQusList(tmp)
+        }
+
+        // const tmp = qusList.concat(res.data.list)
+        // const tmp = new Set<GetQusOut>(qusList)
+        // console.log('1.5', tmp)
+        // res.data.list.forEach((item, idx) => {
+        //   tmp.add(item)
+        // })
+        // console.log('2', tmp)
+        // setQusList(Array.from(tmp))
+        // setPageNum(1)
+        setIsCdChanged(false)
+      }).catch(err => {
+        console.error(err)
       })
   }
 
@@ -53,8 +111,8 @@ export const QusPage: React.FC = () => {
         setCd(res.data)
         const tmpTagCd = res.data.filter(item => item.comGrpCd === 'TAG_CD')
         const tmpDifCd = res.data.filter(item => item.comGrpCd === 'DIF_CD')
-        setTagCd(tmpTagCd)
-        setDifCd(tmpDifCd)
+        setTagCdList(tmpTagCd)
+        setDifCdList(tmpDifCd)
       })
   }
   // Dom ---------------------------------------------------------------------------------------------------------------
@@ -86,9 +144,12 @@ export const QusPage: React.FC = () => {
           >
             {
               qusList &&
-              qusList.map((it, idx) => (
-                <QusCard key={it.qusId} qus={it}/>
-              ))
+                qusList.map((item, idx) => (
+                  <QusCard key={item.qusId} qus={item} />
+                ))
+              // qusList.map((it, idx) => (
+              //   <QusCard key={it.qusId} qus={it}/>
+              // ))
             }
           </InfiniteScroll>
         </div>
@@ -99,21 +160,21 @@ export const QusPage: React.FC = () => {
     {/* ============================= 태그 영역 시작 =========================== */}
       <div className="container-tag">
         {/* 태그 시작 */}
-        <div>
-          <TagCard
-            title="Tag"
-            item={tagCd}
-          />
-        </div>
+
+        <TagCard
+          title="Tag"
+          item={tagCdList}
+          handleCheckbox={handleCheckbox}
+        />
         {/* 태그 끝 */}
 
+        <div style={{marginTop: '20px'}}/>
         {/* 언어 시작 */}
-        <div>
-          <TagCard
-            title="Difficulty"
-            item={difCd}
-          />
-        </div>
+        <TagCard
+          title="Difficulty"
+          item={difCdList}
+          handleCheckbox={handleCheckbox}
+        />
         {/* 언어 끝 */}
       </div>
     {/* ============================= 태그 영역 끝 ============================ */}

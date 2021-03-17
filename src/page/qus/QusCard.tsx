@@ -11,9 +11,13 @@ import {GetQusOut} from "../../API"
 export interface QusCardProps{
   qus: GetQusOut
 }
+
+const {useState, useEffect} = React
+
 export const QusCard: React.FC<QusCardProps> = (props) => {
   // State -------------------------------------------------------------------------------------------------------------
   const {qus} = props
+  // LifeCycle ---------------------------------------------------------------------------------------------------------
   // Function ----------------------------------------------------------------------------------------------------------
 
   // Dom ---------------------------------------------------------------------------------------------------------------
@@ -21,7 +25,9 @@ export const QusCard: React.FC<QusCardProps> = (props) => {
     <div className="card-qus">
       <div className="title-area">
         <h4>[{qus.qusId}]{qus.qusTitle}</h4>
-        <span>{qus.tagCdName}</span>
+        <div>
+          <span className={qus.difCd === '01' ? 'green' : (qus.difCd === '02' ? 'yellow' : 'red')}>{qus.difCdName}</span> <span>{qus.tagCdName}</span>
+        </div>
       </div>
 
       <div className="arrow-area">

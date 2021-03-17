@@ -16,7 +16,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "codegen": "^0.1.0",
-    "parcel": "^1.12.3",
+    "parcel-bundler": "^1.12.5",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",
     "react-dom": "^17.0.1",
@@ -29,6 +29,7 @@
   },
   "scripts": {
     "codegen": "openapi-generator-cli generate -i http://localhost:5001/v3/api-docs -o src/API -g typescript-axios -c ./axios.json --skip-validate-spec",
+    "start-local": "PORT=3001 react-scripts start",
     "start": "parcel ./src/index.html -p 3001 --open",
     "build": "react-scripts build",
     "test": "react-scripts test",

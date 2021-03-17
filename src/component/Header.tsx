@@ -36,7 +36,7 @@ export const Header: React.FC = () => {
               <a
                 href="/#"
               >
-                로그인
+                Login
               </a>
             </div>
         }
