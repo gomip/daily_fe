@@ -25,7 +25,6 @@ export const QusDetail: React.FC = (props) => {
   console.log(qus)
   // LifeCycle ---------------------------------------------------------------------------------------------------------
   // Function ----------------------------------------------------------------------------------------------------------
-
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
     <BasePage>
@@ -41,10 +40,15 @@ export const QusDetail: React.FC = (props) => {
             등록
           </Button>
         </div>
-        <div style={{backgroundColor: 'white', marginTop: '20px'}}>
+        <div style={{backgroundColor: 'white', marginTop: '20px', padding: 20}}>
           <ReactMarkdown
-            source={qus!.qusCtn}
-          />
+            renderers={{
+              inlineCode: InlineCodeBlock,
+              blockquote: BlockQuote
+            }}
+          >
+            {qus!.qusCtn}
+          </ReactMarkdown>
         </div>
       </div>
       {/* ============================= 문제 내용 끝 ========================== */}
@@ -55,5 +59,23 @@ export const QusDetail: React.FC = (props) => {
       </div>
       {/* ============================= 추가 내용 끝 ========================== */}
     </BasePage>
+  )
+}
+
+function InlineCodeBlock(props: any) {
+  return (
+    <span style={{background: '#eee', paddingLeft: '5px', paddingRight: '5px', fontWeight: 'bold'}}>
+      {/* eslint-disable-next-line react/destructuring-assignment */}
+      {props.value}
+    </span>
+  )
+}
+
+function BlockQuote(props: any) {
+  return (
+    <div style={{border: '1px dashed #aaa', borderRadius: 10, padding: 10, margin: 5}}>
+      {/* eslint-disable-next-line react/destructuring-assignment */}
+      {props.children}
+    </div>
   )
 }
