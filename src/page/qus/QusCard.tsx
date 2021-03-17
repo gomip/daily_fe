@@ -24,7 +24,7 @@ export const QusCard: React.FC<QusCardProps> = (props) => {
   return (
     <div className="card-qus">
       <div className="title-area">
-        <h4>[{qus.qusId}]{qus.qusTitle}</h4>
+        <h4>{qus.qusTitle}</h4>
         <div>
           <span className={qus.difCd === '01' ? 'green' : (qus.difCd === '02' ? 'yellow' : 'red')}>{qus.difCdName}</span> <span>{qus.tagCdName}</span>
         </div>

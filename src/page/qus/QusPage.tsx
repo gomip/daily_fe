@@ -89,23 +89,13 @@ export const QusPage: React.FC = () => {
           const tmp = qusList.concat(res.data.list)
           setQusList(tmp)
         }
-
-        // const tmp = qusList.concat(res.data.list)
-        // const tmp = new Set<GetQusOut>(qusList)
-        // console.log('1.5', tmp)
-        // res.data.list.forEach((item, idx) => {
-        //   tmp.add(item)
-        // })
-        // console.log('2', tmp)
-        // setQusList(Array.from(tmp))
-        // setPageNum(1)
         setIsCdChanged(false)
       }).catch(err => {
         console.error(err)
       })
   }
 
-  const getCd = async () => {
+  const getCd = async () => {                                                   // 우측에 사용되는 필터들 조회
     await cdService.getCdList()
       .then(res => {
         setCd(res.data)
@@ -114,6 +104,14 @@ export const QusPage: React.FC = () => {
         setTagCdList(tmpTagCd)
         setDifCdList(tmpDifCd)
       })
+  }
+
+  const renderLoading = () => {
+    return (
+      <div style={{marginTop: '20px'}}>
+        <h4 style={{color: 'white'}}>Loading...</h4>
+      </div>
+    )
   }
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
@@ -139,7 +137,7 @@ export const QusPage: React.FC = () => {
           <InfiniteScroll
             next={() => setPageNum(pageNum+1)}
             hasMore
-            loader={<h4>Loading...</h4>}
+            loader={renderLoading()}
             dataLength={qus ? qus.total : 0}
           >
             {
