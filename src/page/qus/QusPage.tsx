@@ -39,6 +39,7 @@ export const QusPage: React.FC = () => {
   const [tagCd, setTagCd] = useState<string[]>([])
   const [difCd, setDifCd] = useState<string[]>([])
   const [isCdChanged, setIsCdChanged] = useState(false)               // 코드값 변경 확인 state
+  const [showPostModal, setShowPostModal] = useState(false)           // 문제 등록 모달 관리 state
   // LifeCycle ---------------------------------------------------------------------------------------------------------
   useEffect(() => {
     getQus()

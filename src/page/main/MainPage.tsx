@@ -10,6 +10,7 @@ import {BasePage} from "../../component/BasePage"
 export const MainPage: React.FC = () => {
   // State -------------------------------------------------------------------------------------------------------------
   const history = useHistory()
+  const uri = "http://localhost:3001/login"
   // Function ----------------------------------------------------------------------------------------------------------
   const handleGoogleSignUp = () => {
     const path = '/auth/GOOGLE'
@@ -25,7 +26,8 @@ export const MainPage: React.FC = () => {
         >
           Sign up
         </Button>
-        <a href="http://localhost:5001/oauth2/authorize/google?redirect_uri=<uri>">구글 로그인</a>
+        {/*<a href={"http://localhost:5001/oauth2/authorize/google?redirect_uri=" + uri}>구글 로그인</a>*/}
+        <a href={"http://localhost:5001?redirect_uri=" + uri}>구글 로그인</a>
       </div>
     </BasePage>
   )

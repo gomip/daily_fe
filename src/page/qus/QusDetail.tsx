@@ -54,9 +54,7 @@ export const QusDetail: React.FC = (props) => {
       {/* ============================= 문제 내용 끝 ========================== */}
 
       {/* ============================= 추가 내용 시작 ========================= */}
-      <div className="container-tag">
-        <div>hi</div>
-      </div>
+      <div className="container-tag" />
       {/* ============================= 추가 내용 끝 ========================== */}
     </BasePage>
   )
@@ -79,3 +77,14 @@ function BlockQuote(props: any) {
     </div>
   )
 }
+
+// function CodeBlock(props: any) {
+//   return (
+//     <pre style={{padding: 10}}>
+//       <code>
+//         {/* eslint-disable-next-line react/destructuring-assignment */}
+//         {props.value}
+//       </code>
+//     </pre>
+//   )
+// }
