@@ -37,7 +37,8 @@
         "aspects": ["invalidHref", "preferButton"]
       }
     ],
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "no-param-reassign": 0
   },
   "globals": {
     "React": "writable"

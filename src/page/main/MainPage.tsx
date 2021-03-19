@@ -16,6 +16,7 @@ export const MainPage: React.FC = () => {
     const path = '/auth/GOOGLE'
     history.push(path)
   }
+        // <a href={"http://localhost:5001/oauth2/authorize/google?redirect_uri=" + uri}>구글 로그인</a>
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
     <BasePage>
@@ -26,8 +27,7 @@ export const MainPage: React.FC = () => {
         >
           Sign up
         </Button>
-        {/*<a href={"http://localhost:5001/oauth2/authorize/google?redirect_uri=" + uri}>구글 로그인</a>*/}
-        <a href={"http://localhost:5001?redirect_uri=" + uri}>구글 로그인</a>
+        <a href={`http://localhost:5001?redirect_uri=${  uri}`}>구글 로그인</a>
       </div>
     </BasePage>
   )

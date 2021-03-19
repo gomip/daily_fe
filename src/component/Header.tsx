@@ -1,6 +1,7 @@
 import * as React from "react"
-import {Nav, Navbar} from "react-bootstrap"
 import "../static/style/main.scss"
+import {useHistory, useLocation} from "react-router-dom"
+import {useStoreActions, useStoreState} from "../store/hooks"
 
 /**
  * 2021.03.10 | gomip | created
@@ -9,10 +10,29 @@ import "../static/style/main.scss"
  */
 
 const {useState, useEffect} = React
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const moment = require('moment')
 
 export const Header: React.FC = () => {
   // State -------------------------------------------------------------------------------------------------------------
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const uri = "http://localhost:3001/login"
+  const history = useHistory()
+  const location = useLocation()
+  // const session = useStoreState(state => state.session.session)
+  // const removeSession = useStoreActions(actions => actions.session.removeSession)
+  const today = moment().format('YYYY-MM-DD')
+
+  // LifeCycle ---------------------------------------------------------------------------------------------------------
+  // useEffect(() => {
+  //   if (session) {
+  //     if (today.toString() !== moment.unix(session && session!.iat).format('YYYY-MM-DD')) {
+  //       removeSession()
+  //       setIsLoggedIn(false)
+  //       history.push('')
+  //     }
+  //   }
+  // }, [location])
   // Function ----------------------------------------------------------------------------------------------------------
 
   // Dom ---------------------------------------------------------------------------------------------------------------
@@ -34,7 +54,7 @@ export const Header: React.FC = () => {
             :
             <div className="header-menu">
               <a
-                href="/#"
+                href={`http://localhost:5001?redirect_uri=${uri}`}
               >
                 Login
               </a>
