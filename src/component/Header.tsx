@@ -19,20 +19,22 @@ export const Header: React.FC = () => {
   const uri = "http://localhost:3001/login"
   const history = useHistory()
   const location = useLocation()
-  // const session = useStoreState(state => state.session.session)
-  // const removeSession = useStoreActions(actions => actions.session.removeSession)
   const today = moment().format('YYYY-MM-DD')
 
+  // Store State -------------------------------------------------------------------------------------------------------
+  const session = useStoreState(state => state.session.session)
+  const removeSession = useStoreActions(actions => actions.session.removeSession)
+
   // LifeCycle ---------------------------------------------------------------------------------------------------------
-  // useEffect(() => {
-  //   if (session) {
-  //     if (today.toString() !== moment.unix(session && session!.iat).format('YYYY-MM-DD')) {
-  //       removeSession()
-  //       setIsLoggedIn(false)
-  //       history.push('')
-  //     }
-  //   }
-  // }, [location])
+  useEffect(() => {
+    if (session) {
+      if (today.toString() !== moment.unix(session && session!.iat).format('YYYY-MM-DD')) {
+        removeSession()
+        setIsLoggedIn(false)
+        history.push('')
+      }
+    }
+  }, [location])
   // Function ----------------------------------------------------------------------------------------------------------
 
   // Dom ---------------------------------------------------------------------------------------------------------------

@@ -23,9 +23,10 @@ export const Session: SessionModel = {
     try {
       const decoded = jwt.decode(payload)
       if (decoded === null || typeof decoded === 'string') {
-        console.log('decoded :' , decoded)
+        console.log('decoded' , decoded)
         throw new Error('JWT is wrong')
       }
+      console.log('decoded' , decoded)
       state.session = {
         token: payload,
         userId: decoded.userId,

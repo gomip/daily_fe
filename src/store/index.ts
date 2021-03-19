@@ -1,4 +1,5 @@
-import {createStore, PersistConfig} from "easy-peasy"
+import {createStore} from "easy-peasy"
+import {PersistConfig} from 'redux-persist/es/types'
 import {persistReducer} from 'redux-persist'
 import {Reducer as ReduxReducer} from 'redux'
 import storage from "redux-persist/lib/storage"
@@ -12,12 +13,16 @@ export interface StoreModel {
 const storeModel: StoreModel = {
   session: Session
 }
-
-const persistConfig = {
+const persistConfig: PersistConfig<StoreModel> = {
   key: 'root',
   storage,
-  whitelist: ['session']
+  whitelist: ['session', 'dictionary', 'visitedBld'],
 }
+// const persistConfig = {
+//   key: 'root',
+//   storage,
+//   whitelist: ['session']
+// }
 
 export const store = createStore(storeModel,{
   middleware: [(api) => (next) => (action) => {
