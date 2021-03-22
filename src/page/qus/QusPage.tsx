@@ -10,6 +10,7 @@ import {API_HOST} from "../../utils/const"
 import service from "./service"
 import {GetCdOut, GetQusOut, PagingGetQusOut} from "../../API"
 import cdService from "../com/cdService"
+import {useStoreState} from "../../store/hooks"
 
 /**
  * 2021.03.12 | gomip | created
@@ -30,6 +31,7 @@ interface GetQusIn {
 
 export const QusPage: React.FC = () => {
   // State -------------------------------------------------------------------------------------------------------------
+  const session = useStoreState(state => state.session.session)
   const [pageNum, setPageNum] = useState(1)
   const [qus, setQus] = useState<PagingGetQusOut>()                             // 문제 전체 정보 (pagination 포함)
   const [qusList, setQusList] = useState<GetQusOut[]>([])             // 문제 목록
@@ -75,6 +77,7 @@ export const QusPage: React.FC = () => {
   // API ---------------------------------------------------------------------------------------------------------------
   const getQus = async () => {                                                  // 문제 목록 조회
     await service.getQusPaging(
+      session,
       difCd.length > 0 ? difCd.toString() : undefined,
       "",
       pageNum,
@@ -97,7 +100,9 @@ export const QusPage: React.FC = () => {
   }
 
   const getCd = async () => {                                                   // 우측에 사용되는 필터들 조회
-    await cdService.getCdList()
+    await cdService.getCdList(
+      session
+    )
       .then(res => {
         setCd(res.data)
         const tmpTagCd = res.data.filter(item => item.comGrpCd === "TAG_CD")

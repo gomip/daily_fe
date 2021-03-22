@@ -14,7 +14,7 @@ export interface Session {
 export interface SessionModel {
   session?: Session
   setSession: Action<SessionModel, string>
-  removeSession: Action<SessionModel, any>
+  removeSession: Action<SessionModel>
 }
 
 export const Session: SessionModel = {
@@ -26,7 +26,6 @@ export const Session: SessionModel = {
         console.log('decoded' , decoded)
         throw new Error('JWT is wrong')
       }
-      console.log('decoded' , decoded)
       state.session = {
         token: payload,
         userId: decoded.userId,

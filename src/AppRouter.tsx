@@ -1,7 +1,7 @@
 import * as React from "react"
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import {MainPage} from "./page/main/MainPage"
-import {Header} from "./component/Header"
+import {Header} from "./component/Google/Header"
 import {Dashboard} from "./page/com/dashboard/Dashboard"
 /**
  * 2021.03.10 | gomip | created

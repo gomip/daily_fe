@@ -20,7 +20,6 @@ export const Dashboard: React.FC = () => {
   useEffect(() => {
     if (window.location.href.includes('token')) {
       const token = window.location.href.split('=')[1]
-      console.log('token', token)
       setSession(token)
       history.push('')
     }

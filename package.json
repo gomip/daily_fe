@@ -41,7 +41,7 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "codegen": "openapi-generator-cli generate -i http://localhost:5001/v3/api-docs -o src/API -g typescript-axios -c ./axios.json --skip-validate-spec",
+    "codegen": "openapi-generator-cli generate -i http://localhost:5001/v2/api-docs -o src/API -g typescript-axios -c ./axios.json --skip-validate-spec",
     "start-local": "PORT=3001 react-scripts start",
     "start": "parcel ./src/index.html -p 3001 --open",
     "build": "react-scripts build",
