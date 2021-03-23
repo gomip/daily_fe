@@ -73,7 +73,6 @@ export const QusPage: React.FC = () => {
   }
   // API ---------------------------------------------------------------------------------------------------------------
   const getQus = async () => {                                                  // 문제 목록 조회
-    console.log('why?')
     await service.getQusPaging(
       session!.token,
       difCd.length > 0 ? difCd.toString() : undefined,
@@ -85,11 +84,9 @@ export const QusPage: React.FC = () => {
       .then(res => {
         setQus(res.data)
         if (isCdChanged) {                                                      // 옆에 필터값들이 변한거면 qus를 초기화해준다.
-          console.log('im here cd changed')
           setQusList(res.data.list)
           setPageNum(1)
         } else {
-          console.log('im here pageChanged')
           const tmp = qusList.concat(res.data.list)
           setQusList(tmp)
         }

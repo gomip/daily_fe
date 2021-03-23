@@ -27,7 +27,6 @@ export const Dictionary: DictionaryModel = {
       throw new Error('인증이 필요합니다.')
     }
     const res = await service.getDictionary(session.token)
-    console.log('res', res)
     actions.setDictionary(res.data)
   }),
   onRemoveSession: onRemoveSessionCreator<DictionaryModel>((state) => {
