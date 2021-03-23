@@ -135,7 +135,7 @@ export const QusPage: React.FC = () => {
            <InfiniteScroll
             next={() => setPageNum(pageNum + 1)}
             hasMore
-            loader={renderLoading()}
+            loader={() => renderLoading()}
             dataLength={qus ? qus.total : 0}
            >
             {
