@@ -1,6 +1,7 @@
 import * as React from "react"
 import {useHistory, useLocation} from "react-router-dom"
 import {useStoreActions} from "../../../store/hooks"
+import {BasePage} from "../../../component/BasePage"
 
 /**
  * 2021.03.19 | gomip | created
@@ -28,6 +29,8 @@ export const Dashboard: React.FC = () => {
 
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
-    <div>hihihi</div>
+    <BasePage>
+      <div>hihihi</div>
+    </BasePage>
   )
 }

@@ -16,7 +16,6 @@ export const TagCard: React.FC<TagCardProps> = (props) => {
   // State -------------------------------------------------------------------------------------------------------------
   const {title, item, handleCheckbox} = props
   // Function ----------------------------------------------------------------------------------------------------------
-
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
     <div className="card-tag">
@@ -25,7 +24,7 @@ export const TagCard: React.FC<TagCardProps> = (props) => {
         {
           item &&
             item.map(it => (
-              <div key={it.comCdId} className="checkbox-container">
+              <div key={it.comCd} className="checkbox-container">
                 <input
                   value={`${it.comGrpCd}-${it.comCd}`}
                   type="checkbox"

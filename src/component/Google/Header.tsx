@@ -30,12 +30,11 @@ export const Header: React.FC = () => {
   const location = useLocation()
   const today = moment().format('YYYY-MM-DD')
   const [isLoggedIn, setIsLoggedIn] = useState(isValidSession(session))
-  // const [isLoggedIn, setIsLoggedIn] = useState(true)
 
   // LifeCycle ---------------------------------------------------------------------------------------------------------
   useEffect(() => {
     if (session) {
-      if (today.toString() !== moment.unix(session && session!.iat).format('YYYY-MM-DD')) {
+      if (today.toString() !== moment.unix(session && session.iat).format('YYYY-MM-DD')) {
         removeSession()
         setIsLoggedIn(false)
         history.push('')
@@ -55,7 +54,10 @@ export const Header: React.FC = () => {
   }, [session, isLoggedIn])
   // Function ----------------------------------------------------------------------------------------------------------
   const getVerify = async () => {                                                                                       // 유효한 토큰인지 확
-    const isVerify = await service.verifyTokenUsingGET(session && session.token, session && session.token)
+    const isVerify = await service.verifyTokenUsingGET(
+      session && session.token,
+      session && session.token
+    )
     const res = isVerify.data === 'Y'
     setIsLoggedIn(res)
   }
@@ -65,14 +67,13 @@ export const Header: React.FC = () => {
     <header id="header">
       <div className="header-container">
         <div className="logo">
-          <a href="/#">Daily</a>
+          <a href="/dashboard">Daily</a>
         </div>
         {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
         {
           isLoggedIn ?
             <div className="header-menu">
-              {/* <a href="/qus/question" className="header-loggedin">Question</a> */}
-              {/* <a href="/#" className="header-loggedin">Dashboard</a> */}
+               <a href="/qus/question" className="header-loggedin">Question</a>
               {/* <a href="/#" className="header-loggedin">Job</a> */}
               <a href="/#" className="header-loggedin">My Page</a>
             </div>

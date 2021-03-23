@@ -8,7 +8,8 @@ import "../../static/style/qus.scss"
 
 /**
  * 2021.03.17 | gomip | created
- * @constructor
+ * @constructor성
+ * 2021.03.23 | gomip | 임시적으로 사용자 테이블 작
  */
 
 // history push 할때 받는 props를 지정하기 위한 interface
@@ -49,11 +50,15 @@ export const QusDetail: React.FC = (props) => {
             {qus!.qusCtn}
           </ReactMarkdown>
         </div>
-      </div>
       {/* ============================= 문제 내용 끝 ========================== */}
+      </div>
 
       {/* ============================= 추가 내용 시작 ========================= */}
-      <div className="container-tag" />
+      <div className="container-tag">
+         <div style={{backgroundColor: 'white'}}>
+           hihi
+         </div>
+      </div>
       {/* ============================= 추가 내용 끝 ========================== */}
     </BasePage>
   )

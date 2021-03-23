@@ -11,11 +11,13 @@ import service from "./service"
 import {GetCdOut, GetQusOut, PagingGetQusOut} from "../../API"
 import cdService from "../com/cdService"
 import {useStoreState} from "../../store/hooks"
+import {QusPostModal} from "./QusPostModal"
 
 /**
  * 2021.03.12 | gomip | created
  * @constructor
- * 2021.03.15 | gomip | infinite scroll 및 api 적용
+ * 2021.03.15 | gomip | infinite scroll 및 api 적용성
+ * 2021.03.23 | gomip | 문제 등록 모달 작성
  */
 
 const {useState, useEffect} = React
@@ -30,14 +32,13 @@ interface GetQusIn {
 }
 
 export const QusPage: React.FC = () => {
-  // State -------------------------------------------------------------------------------------------------------------
+  // Store State -------------------------------------------------------------------------------------------------------
   const session = useStoreState(state => state.session.session)
+  const codes = useStoreState(state => state.dictionary.codes)
+  // State -------------------------------------------------------------------------------------------------------------
   const [pageNum, setPageNum] = useState(1)
   const [qus, setQus] = useState<PagingGetQusOut>()                             // 문제 전체 정보 (pagination 포함)
   const [qusList, setQusList] = useState<GetQusOut[]>([])             // 문제 목록
-  const [cd, setCd] = useState<GetCdOut[]>([])                        // 코드 목록 조회
-  const [tagCdList, setTagCdList] = useState<GetCdOut[]>([])          // 태그 코드 목록
-  const [difCdList, setDifCdList] = useState<GetCdOut[]>([])          // 난이도 코드 목록
   const [tagCd, setTagCd] = useState<string[]>([])
   const [difCd, setDifCd] = useState<string[]>([])
   const [isCdChanged, setIsCdChanged] = useState(false)               // 코드값 변경 확인 state
@@ -46,10 +47,6 @@ export const QusPage: React.FC = () => {
   useEffect(() => {
     getQus()
   }, [pageNum, tagCd, difCd])
-
-  useEffect(() => {
-    getCd()
-  }, [])
 
   // Function ----------------------------------------------------------------------------------------------------------
   const handleCheckbox = (e: React.SyntheticEvent<HTMLInputElement>) => {
@@ -76,8 +73,9 @@ export const QusPage: React.FC = () => {
   }
   // API ---------------------------------------------------------------------------------------------------------------
   const getQus = async () => {                                                  // 문제 목록 조회
+    console.log('why?')
     await service.getQusPaging(
-      session,
+      session!.token,
       difCd.length > 0 ? difCd.toString() : undefined,
       "",
       pageNum,
@@ -87,9 +85,11 @@ export const QusPage: React.FC = () => {
       .then(res => {
         setQus(res.data)
         if (isCdChanged) {                                                      // 옆에 필터값들이 변한거면 qus를 초기화해준다.
+          console.log('im here cd changed')
           setQusList(res.data.list)
           setPageNum(1)
         } else {
+          console.log('im here pageChanged')
           const tmp = qusList.concat(res.data.list)
           setQusList(tmp)
         }
@@ -99,25 +99,16 @@ export const QusPage: React.FC = () => {
       })
   }
 
-  const getCd = async () => {                                                   // 우측에 사용되는 필터들 조회
-    await cdService.getCdList(
-      session
-    )
-      .then(res => {
-        setCd(res.data)
-        const tmpTagCd = res.data.filter(item => item.comGrpCd === "TAG_CD")
-        const tmpDifCd = res.data.filter(item => item.comGrpCd === "DIF_CD")
-        setTagCdList(tmpTagCd)
-        setDifCdList(tmpDifCd)
-      })
-  }
-
   const renderLoading = () => {
     return (
       <div style={{marginTop: "20px"}}>
         <h4 style={{color: "white"}}>Loading...</h4>
       </div>
     )
+  }
+
+  const handleClose = () => {
+    setShowPostModal(false)
   }
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
@@ -131,6 +122,7 @@ export const QusPage: React.FC = () => {
             variant="primary"
             size="sm"
             className="btn-register"
+            onClick={() => setShowPostModal(!showPostModal)}
           >
             등록
           </Button>
@@ -140,12 +132,12 @@ export const QusPage: React.FC = () => {
         {/* 문제 목록 시작 */}
 
         <div id="scrollableDiv">
-          <InfiniteScroll
+           <InfiniteScroll
             next={() => setPageNum(pageNum + 1)}
             hasMore
             loader={renderLoading()}
             dataLength={qus ? qus.total : 0}
-          >
+           >
             {
               qusList &&
               qusList.map((item, idx) => (
@@ -155,7 +147,7 @@ export const QusPage: React.FC = () => {
                 />
               ))
             }
-          </InfiniteScroll>
+           </InfiniteScroll>
         </div>
         {/* 문제 목록 끝 */}
       </div>
@@ -167,7 +159,7 @@ export const QusPage: React.FC = () => {
 
         <TagCard
           title="Tag"
-          item={tagCdList}
+          item={codes.TAG_CD}
           handleCheckbox={handleCheckbox}
         />
         {/* 태그 끝 */}
@@ -176,12 +168,13 @@ export const QusPage: React.FC = () => {
         {/* 언어 시작 */}
         <TagCard
           title="Difficulty"
-          item={difCdList}
+          item={codes.DIF_CD}
           handleCheckbox={handleCheckbox}
         />
         {/* 언어 끝 */}
       </div>
       {/* ============================= 태그 영역 끝 ============================ */}
+      <QusPostModal show={showPostModal} handleClose={handleClose} getQus={getQus}/>
     </BasePage>
   )
 }
