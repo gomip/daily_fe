@@ -1,5 +1,6 @@
 import * as React from "react"
 import {useParams, useLocation} from 'react-router-dom'
+import {FaCode} from "react-icons/fa"
 import {Button, Table} from "react-bootstrap"
 import ReactMarkdown from "react-markdown"
 import {BasePage} from "../../component/BasePage"
@@ -35,7 +36,7 @@ export const QusDetail: React.FC = (props) => {
   }, [location])
   // Function ----------------------------------------------------------------------------------------------------------
   const getSol = async () => {
-    const res = await service.getAns(
+    const res = await service.getSol(
       session!.token,
       qus!.qusId
     )
@@ -75,9 +76,12 @@ export const QusDetail: React.FC = (props) => {
           <thead>
             <tr>
               <th>#</th>
-              <th>아이디</th>
-              <th>사용언어</th>
-              <th>코드보기</th>
+              {/* <th>t1</th> */}
+              {/* <th>t2</th> */}
+              {/* <th>t3</th> */}
+               <th>아이디</th>
+               <th>사용언어</th>
+               <th>코드보기</th>
             </tr>
           </thead>
           <tbody>
@@ -85,9 +89,13 @@ export const QusDetail: React.FC = (props) => {
             sol && sol.map(item => (
               <tr key={item.solId}>
                 <td>{item.solId.replaceAll(regex,'')}</td>
-                <td>{item.createUserName}</td>
-                <td>{item.langCdName}</td>
-                <td>#</td>
+                 <td>{item.createUserName}</td>
+                 <td>{item.langCdName}</td>
+                  <td>
+                    <Button>
+                      <FaCode size={14}/>
+                    </Button>
+                  </td>
               </tr>
             ))
           }

@@ -4,11 +4,11 @@ import * as React from "react"
  * 2021.03.23 | gomip | created
  * @constructor
  */
-export interface QusAnsProps{
+export interface QusSolProps{
   show: boolean
 }
 
-export const QusSol: React.FC<QusAnsProps> = (props) => {
+export const QusSol: React.FC<QusSolProps> = (props) => {
   // State -------------------------------------------------------------------------------------------------------------
 
   // Function ----------------------------------------------------------------------------------------------------------
