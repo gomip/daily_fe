@@ -8,6 +8,7 @@ import {GetQusOut, GetSolOut} from "../../API"
 import "../../static/style/qus.scss"
 import service from "./service"
 import {useStoreState} from "../../store/hooks"
+import {SolTableRow} from './SolTableRow'
 
 /**
  * 2021.03.17 | gomip | created
@@ -86,17 +87,18 @@ export const QusDetail: React.FC = (props) => {
           </thead>
           <tbody>
           {
-            sol && sol.map(item => (
-              <tr key={item.solId}>
-                <td>{item.solId.replaceAll(regex,'')}</td>
-                 <td>{item.createUserName}</td>
-                 <td>{item.langCdName}</td>
-                  <td>
-                    <Button>
-                      <FaCode size={14}/>
-                    </Button>
-                  </td>
-              </tr>
+            sol && sol.map((item, index) => (
+              <SolTableRow key={item.solId} solRow={item} index={index}/>
+              // <tr key={item.solId}>
+              //   <td>{item.solId.replaceAll(regex,'')}</td>
+              //    <td>{item.createUserName}</td>
+              //    <td>{item.langCdName}</td>
+              //     <td>
+              //       <Button>
+              //         <FaCode size={14}/>
+              //       </Button>
+              //     </td>
+              // </tr>
             ))
           }
           </tbody>
@@ -110,7 +112,7 @@ export const QusDetail: React.FC = (props) => {
   )
 }
 
-function InlineCodeBlock(props: any) {
+export function InlineCodeBlock(props: any) {
   return (
     <span style={{background: '#eee', paddingLeft: '5px', paddingRight: '5px', fontWeight: 'bold'}}>
       {/* eslint-disable-next-line react/destructuring-assignment */}
@@ -119,7 +121,7 @@ function InlineCodeBlock(props: any) {
   )
 }
 
-function BlockQuote(props: any) {
+export function BlockQuote(props: any) {
   return (
     <div style={{border: '1px dashed #aaa', borderRadius: 10, padding: 10, margin: 5}}>
       {/* eslint-disable-next-line react/destructuring-assignment */}
@@ -128,13 +130,13 @@ function BlockQuote(props: any) {
   )
 }
 
-// function CodeBlock(props: any) {
-//   return (
-//     <pre style={{padding: 10}}>
-//       <code>
-//         {/* eslint-disable-next-line react/destructuring-assignment */}
-//         {props.value}
-//       </code>
-//     </pre>
-//   )
-// }
+export function CodeBlock(props: any) {
+  return (
+    <pre style={{padding: 10}}>
+      <code>
+        {/* eslint-disable-next-line react/destructuring-assignment */}
+        {props.value}
+      </code>
+    </pre>
+  )
+}
