@@ -11,7 +11,6 @@ import {Dashboard} from "./page/com/dashboard/Dashboard"
 
 export const AppRouter: React.FC = () => {
   // State -------------------------------------------------------------------------------------------------------------
-  const ComRoute = React.lazy(() => import('./route/ComRoute'))
   const QusRoute = React.lazy(() => import('./route/QusRoute'))
 
   // Function ----------------------------------------------------------------------------------------------------------
@@ -22,8 +21,9 @@ export const AppRouter: React.FC = () => {
       <Header />
       <React.Suspense fallback={<div>Loading...</div>}>
         <Switch>
-          <Route exact path="/"><ComRoute /></Route>
+          <Route exact path="/"><MainPage /></Route>
           <Route path="/qus"><QusRoute /></Route>
+          <Route path="/dashboard"><Dashboard /></Route>
         </Switch>
       </React.Suspense>
     </Router>

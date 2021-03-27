@@ -18,9 +18,6 @@ export const ComRoute: React.FC = () => {
       <Route path="/">
         <MainPage />
       </Route>
-      <Route path="/dashboard">
-        <Dashboard />
-      </Route>
     </Switch>
   )
 }
