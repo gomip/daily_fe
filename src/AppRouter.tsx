@@ -1,10 +1,8 @@
 import * as React from "react"
-import {BrowserRouter as Router, Switch, Route, useLocation, useHistory} from "react-router-dom"
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import {MainPage} from "./page/main/MainPage"
 import {Header} from "./component/Google/Header"
 import {Dashboard} from "./page/com/dashboard/Dashboard"
-import {useStoreActions, useStoreState} from "./store/hooks"
-import {isValidSession} from "./store/Session/model"
 /**
  * 2021.03.10 | gomip | created
  * @constructor
@@ -24,9 +22,8 @@ export const AppRouter: React.FC = () => {
       <Header />
       <React.Suspense fallback={<div>Loading...</div>}>
         <Switch>
-          <Route exact path="/"><MainPage /></Route>
+          <Route exact path="/"><ComRoute /></Route>
           <Route path="/qus"><QusRoute /></Route>
-          <Route path="/dashboard"><Dashboard /></Route>
         </Switch>
       </React.Suspense>
     </Router>

@@ -1,6 +1,7 @@
 import * as React from "react"
-import {Switch, useRouteMatch} from "react-router-dom"
+import {Route, Switch, useRouteMatch} from "react-router-dom"
 import {MainPage} from "../page/main/MainPage"
+import {Dashboard} from '../page/com/dashboard/Dashboard'
 /**
  * 2021.03.10 | gomip | created
  * @constructor
@@ -14,9 +15,12 @@ export const ComRoute: React.FC = () => {
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
     <Switch>
-      {/* <PrivateRoute> */}
+      <Route path="/">
         <MainPage />
-      {/* </PrivateRoute> */}
+      </Route>
+      <Route path="/dashboard">
+        <Dashboard />
+      </Route>
     </Switch>
   )
 }

@@ -1,8 +1,8 @@
 import * as React from "react"
-import ReactMarkdown from 'react-markdown'
 import {Modal} from 'react-bootstrap'
 import {GetSolOut} from '../../API/modelPkg'
-import {BlockQuote, InlineCodeBlock} from './QusDetail'
+import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/default-highlight'
+import {dracula} from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 /**
  * 2021.03.24 | gomip | created
@@ -39,14 +39,12 @@ export const SolModal: React.FC<SolModalProps> = (props) => {
 
         <Modal.Body>
           <div style={{backgroundColor: 'white', padding: 20}}>
-            <ReactMarkdown
-              renderers={{
-                inlineCode: InlineCodeBlock,
-                blockquote: BlockQuote,
-              }}
+            <SyntaxHighlighter
+              language={sol.langCdName}
+              style={dracula}
             >
               {sol.solCtn}
-            </ReactMarkdown>
+            </SyntaxHighlighter>
           </div>
         </Modal.Body>
       </Modal>
