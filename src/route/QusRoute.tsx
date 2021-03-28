@@ -15,10 +15,10 @@ export const QusRoute: React.FC = () => {
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
     <Switch>
-      <Route exact path={`${path}/question`}>
+      <Route exact path={`${path}`}>
         <QusPage />
       </Route>
-      <Route path={`${path}/question/:id`}>
+      <Route path={`${path}/:id`}>h
         <QusDetail />
       </Route>
     </Switch>

@@ -73,7 +73,7 @@ export const Header: React.FC = () => {
         {
           isLoggedIn ?
             <div className="header-menu">
-               <a href="/qus/question" className="header-loggedin">Question</a>
+               <a href="/question" className="header-loggedin">Question</a>
               {/* <a href="/#" className="header-loggedin">Job</a> */}
               <a href="/#" className="header-loggedin">My Page</a>
             </div>

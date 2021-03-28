@@ -22,7 +22,7 @@ export const AppRouter: React.FC = () => {
       <React.Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route exact path="/"><MainPage /></Route>
-          <Route path="/qus"><QusRoute /></Route>
+          <Route path="/question"><QusRoute /></Route>
           <Route path="/dashboard"><Dashboard /></Route>
         </Switch>
       </React.Suspense>

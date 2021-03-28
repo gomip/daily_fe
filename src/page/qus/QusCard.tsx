@@ -24,7 +24,7 @@ export const QusCard: React.FC<QusCardProps> = (props) => {
 
   const handleQusDetail = (e: React.MouseEvent<HTMLDivElement>) => {
     history.push({
-      pathname: `/qus/question/${qus.qusId}`,
+      pathname: `/question/${qus.qusId}`,
       state: {qus}
     })
   }
