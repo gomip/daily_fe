@@ -9,6 +9,7 @@ import "../../static/style/qus.scss"
 import service from "./service"
 import {useStoreState} from "../../store/hooks"
 import {SolTableRow} from './SolTableRow'
+import {SolPostModal} from "./SolPostModal"
 
 /**
  * 2021.03.17 | gomip | created
@@ -31,6 +32,7 @@ export const QusDetail: React.FC = (props) => {
   const {qus} = location.state as historyState
   const [sol, setSol] = useState<GetSolOut[]>([])
   const regex = /([a-zA-z]|0+)(?!$)/g
+  const [showPostModal, setShowPostModal] = useState(false)
   // LifeCycle ---------------------------------------------------------------------------------------------------------
   useEffect(() => {
     getSol()
@@ -43,6 +45,11 @@ export const QusDetail: React.FC = (props) => {
     )
     setSol(res.data)
   }
+
+  const handleClose = () => {
+    setShowPostModal(false)
+  }
+
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
     <BasePage>
@@ -54,6 +61,7 @@ export const QusDetail: React.FC = (props) => {
             variant="primary"
             size="sm"
             className="btn-register"
+            onClick={() => setShowPostModal(!showPostModal)}
           >
             등록
           </Button>
@@ -108,6 +116,7 @@ export const QusDetail: React.FC = (props) => {
          {/* </div> */}
       </div>
       {/* ============================= 추가 내용 끝 ========================== */}
+      <SolPostModal show={showPostModal} qId={qus!.qusId} handleClose={handleClose} getSol={getSol}/>
     </BasePage>
   )
 }
