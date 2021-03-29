@@ -1,6 +1,7 @@
 import * as React from "react"
 import {useParams, useLocation} from 'react-router-dom'
-import {FaCode} from "react-icons/fa"
+import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/default-highlight'
+import {dracula} from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import {Button, Table} from "react-bootstrap"
 import ReactMarkdown from "react-markdown"
 import {BasePage} from "../../component/BasePage"
@@ -50,6 +51,13 @@ export const QusDetail: React.FC = (props) => {
     setShowPostModal(false)
   }
 
+  const CodeBlock = (value: string) => {
+    return (
+      <SyntaxHighlighter language="markdown" style={dracula}>
+        {value}
+      </SyntaxHighlighter>
+    )
+  }
   // Dom ---------------------------------------------------------------------------------------------------------------
   return (
     <BasePage>
@@ -69,6 +77,7 @@ export const QusDetail: React.FC = (props) => {
         <div style={{backgroundColor: 'white', marginTop: '20px', padding: 20}}>
           <ReactMarkdown
             renderers={{
+              code: CodeBlock,
               inlineCode: InlineCodeBlock,
               blockquote: BlockQuote
             }}
@@ -136,16 +145,5 @@ export function BlockQuote(props: any) {
       {/* eslint-disable-next-line react/destructuring-assignment */}
       {props.children}
     </div>
-  )
-}
-
-export function CodeBlock(props: any) {
-  return (
-    <pre style={{padding: 10}}>
-      <code>
-        {/* eslint-disable-next-line react/destructuring-assignment */}
-        {props.value}
-      </code>
-    </pre>
   )
 }
