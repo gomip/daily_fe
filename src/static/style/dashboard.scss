@@ -1,0 +1,58 @@
+.layout {
+  height: 250px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subtitle{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* =====================================================================================================================
+    최근 문제 관련 scss
+===================================================================================================================== */
+.qus-card-list{
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-qus-card{
+  height: 100%;
+  width: 200px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* =====================================================================================================================
+    중간 layout
+===================================================================================================================== */
+.data-table{
+  width: 960px;
+  height: 100%;
+  background-color: white;
+}
+
+.card-ranking{
+  width: 260px;
+  height: 100%;
+  background-color: white;
+  padding: 10px;
+}
+/* =====================================================================================================================
+    하단 layout
+===================================================================================================================== */
+.graph-answer{
+  width: 470px;
+  height: 100%;
+  background-color: white;
+  padding: 10px;
+}

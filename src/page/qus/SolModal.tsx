@@ -1,8 +1,8 @@
 import * as React from "react"
 import {Modal} from 'react-bootstrap'
-import {GetSolOut} from '../../API/modelPkg'
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/default-highlight'
 import {dracula} from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import {GetSolOut} from '../../API/modelPkg'
 
 /**
  * 2021.03.24 | gomip | created
